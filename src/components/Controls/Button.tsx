@@ -5,9 +5,10 @@ const Button: React.FC<{
   text?: string;
   onClick: () => void;
   children?: ReactNode;
-}> = ({ disabled, text, children, onClick }) => {
+  style?: React.CSSProperties;
+}> = ({ disabled, text, children, onClick, style }) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button style={style} onClick={onClick} disabled={disabled}>
       {text ?? children}
     </button>
   );

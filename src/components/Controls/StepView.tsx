@@ -78,12 +78,24 @@ const StepView = <T,>({
   };
 
   return (
-    <div>
-      <h3>{step.title}</h3>
-      {renderStepControl()}
-      <Button disabled={isEmpty(values[step.propertyName])} onClick={onSubmit}>
-        {buttonText}
-      </Button>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="stepTitle">{step.title}</div>
+      <div>{renderStepControl()}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-end",
+          paddingTop: 20,
+        }}
+      >
+        <Button
+          disabled={isEmpty(values[step.propertyName])}
+          onClick={onSubmit}
+        >
+          {buttonText}
+        </Button>
+      </div>
     </div>
   );
 };

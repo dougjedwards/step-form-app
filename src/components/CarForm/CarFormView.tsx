@@ -27,16 +27,25 @@ const CarFormView = () => {
   const isEndOfForm = stepIndex === STEPS.length - 1;
 
   return (
-    <div>
+    <div style={{ width: 400 }} className="card">
       {stepIndex == null ? (
         <div>
           {isEmpty(car) ? (
-            <Button text={"Start"} onClick={() => setStepIndex(0)} />
+            <Button text="Start" onClick={() => setStepIndex(0)} />
           ) : (
             <div>
               <h4>Generated Text</h4>
               <p>{`I have a ${car.make} and the colour is ${car.colour}`}</p>
               {car.colour === CarColour.RED && <p>THE CAR IS RED! NICE!!</p>}
+              <p>{`REF: ${car.code}`}</p>
+              <Button
+                style={{ marginTop: 20 }}
+                text="Restart"
+                onClick={() => {
+                  setStepIndex(0);
+                  setCar({});
+                }}
+              />
             </div>
           )}
         </div>
