@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import Button from "./Button";
 
 type StepBase<T> = {
@@ -41,15 +42,20 @@ const StepView = <T,>({
           <select
             value={values[step.propertyName] as (typeof step.options)[number]}
             onChange={(e) => {
+              const value = step.options.includes(e.currentTarget.value)
+                ? e.currentTarget.value
+                : undefined;
               onChange({
                 ...values,
-                [step.propertyName]: e.currentTarget.value,
+                [step.propertyName]: value,
               });
             }}
           >
             <option value={undefined}>Select an option</option>
             {step.options.map((option) => (
-              <option key={option}>{option}</option>
+              <option key={option} value={option}>
+                {option}
+              </option>
             ))}
           </select>
         );
@@ -75,7 +81,7 @@ const StepView = <T,>({
     <div>
       <h3>{step.title}</h3>
       {renderStepControl()}
-      <Button disabled={values[step.propertyName] == null} onClick={onSubmit}>
+      <Button disabled={isEmpty(values[step.propertyName])} onClick={onSubmit}>
         {buttonText}
       </Button>
     </div>
