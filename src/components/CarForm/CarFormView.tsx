@@ -31,7 +31,9 @@ const CarFormView = () => {
       {stepIndex == null ? (
         <div>
           {isEmpty(car) ? (
-            <Button text="Start" onClick={() => setStepIndex(0)} />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Button text="Start" onClick={() => setStepIndex(0)} />
+            </div>
           ) : (
             <div>
               <h4>Generated Text</h4>
